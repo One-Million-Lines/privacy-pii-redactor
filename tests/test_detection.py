@@ -13,7 +13,6 @@ from pii_redactor.config import Settings
 from pii_redactor.detection.detector import PIIDetector
 from pii_redactor.detection.regex_detector import RegexDetector
 
-
 # ── Fixture shortcuts ─────────────────────────────────────────────────────────
 
 

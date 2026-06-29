@@ -8,8 +8,7 @@ rather than Pydantic — so the core detection/redaction logic remains
 dependency-free.
 """
 
-from dataclasses import dataclass, field
-from typing import Optional
+from dataclasses import dataclass
 
 
 @dataclass
@@ -96,7 +95,7 @@ class RedactionResult:
     redacted_text: str
     entities: list[DetectedEntity]
     mapping: dict[str, str]
-    mapping_id: Optional[str] = None
+    mapping_id: str | None = None
 
 
 @dataclass

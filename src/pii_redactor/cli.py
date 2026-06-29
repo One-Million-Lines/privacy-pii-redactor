@@ -11,9 +11,7 @@ Usage:
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
-from typing import Optional
 
 import typer
 from rich.console import Console
@@ -88,7 +86,7 @@ def redact(
 @app.command("redact-file")
 def redact_file(
     input_file: Path = typer.Argument(..., help="Path to the input text file"),
-    output: Optional[Path] = typer.Option(
+    output: Path | None = typer.Option(
         None, "--output", "-o", help="Path to write the redacted output (default: stdout)"
     ),
     language: str = typer.Option("en", "--language", "-l", help="ISO 639-1 language code"),

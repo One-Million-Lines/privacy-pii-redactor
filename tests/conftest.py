@@ -111,6 +111,7 @@ def fake_redis_store():
     """
     try:
         import fakeredis  # type: ignore[import]
+
         from pii_redactor.storage.redis import RedisStore
 
         server = fakeredis.FakeServer()

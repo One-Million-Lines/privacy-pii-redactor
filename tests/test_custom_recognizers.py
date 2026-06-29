@@ -4,16 +4,12 @@ Tests for custom recognizers loaded via Python dict or YAML config.
 
 from __future__ import annotations
 
-import tempfile
-from pathlib import Path
-
 import pytest
 
 from pii_redactor.config import Settings, load_yaml_config
 from pii_redactor.detection.detector import PIIDetector
 from pii_redactor.detection.regex_detector import RegexDetector
 from pii_redactor.redaction.redactor import PIIRedactor
-
 
 CUSTOMER_ID_PATTERN = {"name": "CUSTOMER_ID", "pattern": r"CUS-[0-9]{6}", "confidence": 0.95}
 PROJECT_CODE_PATTERN = {"name": "PROJECT_CODE", "pattern": r"PRJ-[A-Z]{3}-[0-9]{4}", "confidence": 0.90}

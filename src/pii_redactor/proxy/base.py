@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any
 
 
 @dataclass
@@ -43,7 +43,7 @@ class LLMResponse:
     content: str
     model: str
     raw: dict[str, Any]
-    usage: Optional[dict[str, int]] = None
+    usage: dict[str, int] | None = None
 
 
 class LLMProvider(ABC):

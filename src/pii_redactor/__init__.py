@@ -21,8 +21,6 @@ Quick start::
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pii_redactor.config import Settings
 from pii_redactor.detection.detector import PIIDetector
 from pii_redactor.models import DetectedEntity, RedactionResult, RestorationResult
@@ -68,9 +66,9 @@ class PrivacyRedactor:
 
     def __init__(
         self,
-        config: Optional[Settings] = None,
-        store: Optional[MappingStore] = None,
-        custom_patterns: Optional[list[dict]] = None,
+        config: Settings | None = None,
+        store: MappingStore | None = None,
+        custom_patterns: list[dict] | None = None,
     ) -> None:
         self._config = config or Settings()
         self._detector = PIIDetector(config=self._config, custom_patterns=custom_patterns)
@@ -152,7 +150,7 @@ class PrivacyRedactor:
         text: str,
         mapping_id: str,
         delete_after: bool = True,
-    ) -> Optional[RestorationResult]:
+    ) -> RestorationResult | None:
         """
         Restore *text* using a mapping previously stored via :meth:`redact`.
 

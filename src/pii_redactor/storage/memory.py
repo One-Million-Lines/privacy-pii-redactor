@@ -17,7 +17,6 @@ import logging
 import threading
 import time
 import uuid
-from typing import Any
 
 from pii_redactor.storage.base import MappingStore
 

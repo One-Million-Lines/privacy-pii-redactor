@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import logging
 from functools import lru_cache
-from typing import Optional
 
 from fastapi import Request
 
@@ -49,7 +48,7 @@ def get_settings() -> Settings:
 
 
 @lru_cache(maxsize=1)
-def _build_detector(config_file: Optional[str]) -> PIIDetector:
+def _build_detector(config_file: str | None) -> PIIDetector:
     """
     Internal factory: build (and cache) the PIIDetector.
 

@@ -12,10 +12,9 @@ Security note:
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
-
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Shared entity info schemas
@@ -87,11 +86,11 @@ class RedactResponse(BaseModel):
     entities: list[RedactedEntityInfo] = Field(
         description="List of redacted entities with their placeholder assignments"
     )
-    mapping_id: Optional[str] = Field(
+    mapping_id: str | None = Field(
         default=None,
         description="Opaque ID for retrieving the mapping during restoration. Null if store_mapping=false.",
     )
-    expires_in: Optional[int] = Field(
+    expires_in: int | None = Field(
         default=None,
         description="Seconds until the mapping expires. Null if store_mapping=false.",
     )
@@ -153,14 +152,14 @@ class ChatCompletionResponse(BaseModel):
     model_config = {"extra": "allow"}
 
     # Pass-through fields from the upstream LLM provider
-    id: Optional[str] = None
-    object: Optional[str] = None
-    created: Optional[int] = None
-    model: Optional[str] = None
-    choices: Optional[list[dict[str, Any]]] = None
-    usage: Optional[dict[str, int]] = None
+    id: str | None = None
+    object: str | None = None
+    created: int | None = None
+    model: str | None = None
+    choices: list[dict[str, Any]] | None = None
+    usage: dict[str, int] | None = None
     # Metadata added by the proxy
-    _pii_metadata: Optional[dict[str, Any]] = None
+    _pii_metadata: dict[str, Any] | None = None
 
 
 # ─────────────────────────────────────────────────────────────────────────────

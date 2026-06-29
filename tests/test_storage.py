@@ -6,14 +6,11 @@ Covers save/get/delete, TTL expiry, UUID ID generation, and error cases.
 
 from __future__ import annotations
 
-import time
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
 
 from pii_redactor.storage.base import StorageError
-from pii_redactor.storage.memory import InMemoryStore
-
 
 # ── InMemoryStore ─────────────────────────────────────────────────────────────
 
@@ -166,7 +163,7 @@ class TestRedisStore:
 
     def test_redis_connection_error_raises_storage_error(self):
         """When Redis is not available, StorageError should be raised."""
-        from pii_redactor.storage.redis import RedisStore, get_redis_client
+        from pii_redactor.storage.redis import RedisStore
 
         bad_client = MagicMock()
         bad_client.set.side_effect = Exception("Redis connection refused")

@@ -24,18 +24,22 @@ from typing import Annotated, Any
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse
 
-from pii_redactor.api.dependencies import get_detector, get_redactor, get_restorer, get_settings, get_store
+from pii_redactor.api.dependencies import (
+    get_detector,
+    get_redactor,
+    get_restorer,
+    get_settings,
+    get_store,
+)
 from pii_redactor.api.schemas import (
     ChatCompletionRequest,
     DetectRequest,
     DetectResponse,
     EntityInfo,
-    ErrorDetail,
-    ErrorResponse,
     HealthResponse,
+    RedactedEntityInfo,
     RedactRequest,
     RedactResponse,
-    RedactedEntityInfo,
     RestoreRequest,
     RestoreResponse,
 )
@@ -298,8 +302,8 @@ async def chat_completions(
             },
         )
 
-    from pii_redactor.proxy.openai_compatible import OpenAICompatibleProvider  # noqa: PLC0415
     from pii_redactor.proxy.base import LLMRequest  # noqa: PLC0415
+    from pii_redactor.proxy.openai_compatible import OpenAICompatibleProvider  # noqa: PLC0415
 
     provider = OpenAICompatibleProvider(
         base_url=settings.llm_provider_url,

@@ -7,10 +7,7 @@ Uses typer's testing runner to invoke CLI commands in-process.
 from __future__ import annotations
 
 import json
-import tempfile
-from pathlib import Path
 
-import pytest
 from typer.testing import CliRunner
 
 from pii_redactor.cli import app

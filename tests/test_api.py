@@ -4,7 +4,6 @@ Tests for the FastAPI REST API: all endpoints, auth, size limits, error handling
 
 from __future__ import annotations
 
-import pytest
 from fastapi.testclient import TestClient
 
 

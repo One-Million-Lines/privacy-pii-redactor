@@ -13,7 +13,7 @@ propagates the ``Authorization: Bearer <api_key>`` header.
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import Any
 
 import httpx
 
@@ -52,13 +52,13 @@ class OpenAICompatibleProvider(LLMProvider):
     def __init__(
         self,
         base_url: str,
-        api_key: Optional[str] = None,
+        api_key: str | None = None,
         timeout: int = 60,
     ) -> None:
         self._base_url = base_url.rstrip("/")
         self._api_key = api_key
         self._timeout = timeout
-        self._client: Optional[httpx.AsyncClient] = None
+        self._client: httpx.AsyncClient | None = None
 
     # ── HTTP client lifecycle ─────────────────────────────────────────────────
 

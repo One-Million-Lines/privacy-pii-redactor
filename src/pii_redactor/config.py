@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -79,7 +79,7 @@ class Settings(BaseSettings):
     )
 
     # ── Security / Auth ───────────────────────────────────────────────────────
-    api_key: Optional[str] = Field(
+    api_key: str | None = Field(
         default=None,
         description=(
             "Bearer token required for sensitive endpoints. "
@@ -91,11 +91,11 @@ class Settings(BaseSettings):
     log_level: str = Field(default="INFO", description="Python logging level name")
 
     # ── LLM proxy ─────────────────────────────────────────────────────────────
-    llm_provider_url: Optional[str] = Field(
+    llm_provider_url: str | None = Field(
         default=None,
         description="Base URL of the upstream LLM provider (e.g. https://api.openai.com)",
     )
-    llm_provider_api_key: Optional[str] = Field(
+    llm_provider_api_key: str | None = Field(
         default=None,
         description="API key forwarded to the upstream LLM provider",
     )
@@ -115,7 +115,7 @@ class Settings(BaseSettings):
     )
 
     # ── YAML config ───────────────────────────────────────────────────────────
-    config_file: Optional[str] = Field(
+    config_file: str | None = Field(
         default=None,
         description="Path to an optional YAML config file with entity overrides and custom recognizers",
     )

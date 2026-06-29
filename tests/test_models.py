@@ -10,7 +10,6 @@ import pytest
 
 from pii_redactor.models import DetectedEntity, RedactionResult, RestorationResult
 
-
 # ──────────────────────────────────────────────────────────────────────────────
 # DetectedEntity
 # ──────────────────────────────────────────────────────────────────────────────

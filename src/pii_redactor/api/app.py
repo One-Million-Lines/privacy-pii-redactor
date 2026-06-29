@@ -18,9 +18,8 @@ from __future__ import annotations
 
 import logging
 from contextlib import asynccontextmanager
-from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -30,7 +29,7 @@ from pii_redactor.config import Settings, configure_logging
 logger = logging.getLogger(__name__)
 
 
-def create_app(config: Optional[Settings] = None) -> FastAPI:
+def create_app(config: Settings | None = None) -> FastAPI:
     """
     Construct and configure the FastAPI application.
 
