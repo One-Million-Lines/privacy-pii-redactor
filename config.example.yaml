@@ -1,0 +1,60 @@
+# Privacy PII Redactor - Example YAML Configuration
+# Place your actual config at config.yaml and reference it via CONFIG_FILE env var
+
+app_env: development
+host: "0.0.0.0"
+port: 8000
+
+# Redis settings
+redis_url: "redis://localhost:6379/0"
+mapping_ttl_seconds: 900
+
+# Detection settings
+default_language: "en"
+min_confidence_score: 0.65
+enable_spacy: true
+enable_presidio: true
+enable_regex: true
+
+# Logging
+log_level: INFO
+
+# API security
+# api_key: "your-secret-key-here"
+
+# LLM proxy settings (optional)
+# llm_provider_url: "https://api.openai.com"
+# llm_provider_api_key: "sk-..."
+llm_timeout_seconds: 60
+
+# Maximum request size (bytes)
+max_request_size_bytes: 102400  # 100 KB
+
+# Serve /docs and /redoc endpoints
+docs_enabled: true
+
+# --- Custom entity types ---
+# Override confidence thresholds per entity type
+entity_overrides:
+  PERSON:
+    min_confidence: 0.75
+  CREDIT_CARD:
+    min_confidence: 0.95
+
+# --- Custom regex recognizers ---
+# Add your own PII patterns here
+custom_recognizers:
+  - name: CUSTOMER_ID
+    pattern: "CUS-[0-9]{6}"
+    confidence: 0.95
+    context_words: ["customer", "client", "account"]
+
+  - name: PROJECT_CODE
+    pattern: "PRJ-[A-Z]{3}-[0-9]{4}"
+    confidence: 0.90
+    context_words: ["project", "code"]
+
+  - name: EMPLOYEE_ID
+    pattern: "EMP[0-9]{6}"
+    confidence: 0.90
+    context_words: ["employee", "staff", "id"]
